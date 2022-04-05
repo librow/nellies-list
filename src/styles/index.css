@@ -17,5 +17,10 @@ code {
 }
 
 .form-control {
-  border: 1px solid #f8c146
+  border: 1px solid #dc3c31;
+}
+
+.nav-title {
+  font-weight: bold;
+  color: #dc3c31;
 }

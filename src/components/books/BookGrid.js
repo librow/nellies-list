@@ -1,10 +1,16 @@
+import { useState, useEffect } from "react";
+
 import Book from "./Book";
 import { bookInfo } from "./bookInfo";
 
 function BookGrid() {
     // const [bookData, setBookData] = useState([]);
     // NEEDS WORK: style the cards
-    const [filter, setFilter] = useState([]);
+    // const [filter, setFilter] = useState([]);
+
+    // useEffect(() => {
+    //     setFilter(filter);
+    //   }, [filter]);
 
     return (
         // <div className="grid grid-rows-1 grid-flow-col gap-4">
