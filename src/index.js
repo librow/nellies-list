@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
+import NavBar from './components/layout/NavBar';
+import Footer from './components/layout/Footer';
+import BookGrid from './components/books/BookGrid';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <NavBar />
+    <BookGrid />
+    <Footer />
   </React.StrictMode>,
   document.getElementById('root')
 );
