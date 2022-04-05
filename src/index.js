@@ -4,13 +4,12 @@ import './styles/index.css';
 import reportWebVitals from './reportWebVitals';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
-import BookGrid from './components/books/BookGrid';
+import Home from './routes/Home';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
     <NavBar />
-    <BookGrid />
+    <Home />
     <Footer />
   </React.StrictMode>,
   document.getElementById('root')

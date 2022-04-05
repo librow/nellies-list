@@ -1,10 +1,10 @@
 export const bookInfo = [
     {
-        title: "Sabriel",
-        author: "Garth Nix",
+        title: "Bad Penny",
+        author: "John D. Brown",
         description: "",
-        path: "sabriel.jpg",
-        genre: ["fantasy", "fiction", "young adult"],
+        path: "bad_penny.jpg",
+        genre: ["thriller", "fiction"],
     },
     {
         title: "The Amulet of Samarkand",
@@ -28,11 +28,11 @@ export const bookInfo = [
         genre: ["fantasy", "fiction", "young adult"],
     },
     {
-        title: "Sabriel",
-        author: "Garth Nix",
+        title: "The Attention Merchants: The Epic Scramble to Get Inside Our Heads",
+        author: "Tim Wu",
         description: "",
-        path: "sabriel.jpg",
-        genre: ["fantasy", "fiction", "young adult"],
+        path: "the_attention_merchants.jpg",
+        genre: ["nonfiction", "technology", "business"],
     },
     {
         title: "Sabriel",
