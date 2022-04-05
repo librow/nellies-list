@@ -1,64 +1,54 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-const USERS = [
-    { id: 1, name: 'Andy', age: 32 },
-    { id: 2, name: 'Bob', age: 30 },
-    { id: 3, name: 'Tom Hulk', age: 40 },
-    { id: 4, name: 'Tom Hank', age: 50 },
-    { id: 5, name: 'Audra', age: 30 },
-    { id: 6, name: 'Anna', age: 68 },
-    { id: 7, name: 'Tom', age: 34 },
-    { id: 8, name: 'Tom Riddle', age: 28 },
-    { id: 9, name: 'Bolo', age: 23 },
-  ];
+import { bookInfo } from "./books/bookInfo";
+
+const GENRES = [ "fiction", "fantasy", "nonfiction", "thriller", "business" ];
 
 const Search = () => {
-    const [name, setName] = useState('');
+    const [genre, setGenre] = useState('');
 
     // the search result
-    const [foundUsers, setFoundUsers] = useState(USERS);
+    const [foundGenre, setFoundGenre] = useState(GENRES);
 
     const filter = (e) => {
         const keyword = e.target.value;
-    
+
         if (keyword !== '') {
-          const results = USERS.filter((user) => {
-            return user.name.toLowerCase().startsWith(keyword.toLowerCase());
-            // Use the toLowerCase() method to make it case-insensitive
-          });
-          setFoundUsers(results);
+            const results = bookInfo.filter((book) => {
+                return book.genre.includes(keyword);
+            });
+            setFoundGenre(results);
         } else {
-          setFoundUsers(USERS);
-          // If the text field is empty, show all users
+            setFoundGenre(bookInfo);
         }
-    
-        setName(keyword);
+
+        setGenre(keyword);
     };
 
     return (
         // <button onClick={filter}>Test</button>
-        <div className="container">
-            <input
-                type="search"
-                value={name}
-                onChange={filter}
-                className="input"
-                placeholder="Filter"
-            />
-            <div className="user-list">
-                {foundUsers && foundUsers.length > 0 ? (
-                foundUsers.map((user) => (
-                    <li key={user.id} className="user">
-                    <span className="user-id">{user.id}</span>
-                    <span className="user-name">{user.name}</span>
-                    <span className="user-age">{user.age} year old</span>
-                    </li>
-                ))
-                ) : (
-                <h1>No results found!</h1>
-                )}
+        <>
+            <div className="flex items-center justify-center">
+                <div className="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
+                    {GENRES.map((genre, index) => (
+                        <button 
+                            id={index}
+                            type="button" 
+                            onClick={filter} 
+                            value={genre}
+                            className="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white 
+                                font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 
+                                focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+                            {genre}
+                        </button>
+                    ))}
+                    {/*NEEDS WORK: saving these buttons to fix the styling of the inline buttons, eventually */}
+                    {/* <button type="button" className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Middle</button>
+                    <button type="button" className=" rounded-r inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Right</button> */}
+                </div>
             </div>
-        </div>
+            {/* NEEDS WORK: now use this filtering to actually filter the books, look at code in search to maybe figure this out */}
+        </>   
     )
 };
 
