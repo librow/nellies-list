@@ -1,10 +1,13 @@
 import { useState } from "react";
+import Book from "./books/Book";
 
 import { bookInfo } from "./books/bookInfo";
 
 const GENRES = [ "fiction", "fantasy", "nonfiction", "thriller", "business" ];
 
-const Search = () => {
+const Filter = ({onFilterChange}) => {
+    // NEEDS WORK: add animation on the search and filter if time
+    // OR add animation when scrolling and the cards come into view, fade in
     const [genre, setGenre] = useState('');
 
     // the search result
@@ -26,30 +29,26 @@ const Search = () => {
     };
 
     return (
-        // <button onClick={filter}>Test</button>
         <>
             <div className="flex items-center justify-center">
                 <div className="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
                     {GENRES.map((genre, index) => (
                         <button 
-                            id={index}
+                            key={index}
                             type="button" 
-                            onClick={filter} 
+                            onClick={() => onFilterChange(genre)} 
                             value={genre}
-                            className="rounded-l inline-block px-6 py-2.5 bg-blue-600 text-white 
+                            className={`${index === 0 ? "rounded-l" : ""} ${index === (GENRES.length - 1) ? "rounded-r" : ""} inline-block px-6 py-2.5 filter-button text-white 
                                 font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 
-                                focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">
+                                focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out`}>
                             {genre}
                         </button>
                     ))}
-                    {/*NEEDS WORK: saving these buttons to fix the styling of the inline buttons, eventually */}
-                    {/* <button type="button" className=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Middle</button>
-                    <button type="button" className=" rounded-r inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase hover:bg-blue-700 focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-blue-800 transition duration-150 ease-in-out">Right</button> */}
+                    {/*NEEDS WORK: this is kind of a janky way to conditionally set the button rounded corners */}
                 </div>
             </div>
-            {/* NEEDS WORK: now use this filtering to actually filter the books, look at code in search to maybe figure this out */}
         </>   
     )
 };
 
-export default Search;
+export default Filter;

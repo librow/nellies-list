@@ -24,3 +24,8 @@ code {
   font-weight: bold;
   color: #dc3c31;
 }
+
+.filter-button {
+  /* color: white; */
+  background-color: #dc3c31;
+}

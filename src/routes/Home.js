@@ -10,7 +10,6 @@ function Home() {
       <>
         <img src={CoverImg} alt="cover" />
         <Search />
-        <Filter />
         <BookGrid />
       </>
     );
