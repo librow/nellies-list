@@ -1,38 +1,58 @@
 import { useState, useEffect } from "react";
 import Filter from "../Filter";
-import Search from "../Search";
+
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Book from "./Book";
 import { bookInfo } from "./bookInfo";
 
 function BookGrid() {
-    // const [bookData, setBookData] = useState([]);
-    // NEEDS WORK: style the cards
-    // const [filter, setFilter] = useState([]);
-
-    // useEffect(() => {
-    //     setFilter(filter);
-    //   }, [filter]);
-
     const [genreFilter, setGenreFilter] = useState(null);
-    const [ books, setBooks ] = useState([]);
+    const [books, setBooks] = useState(bookInfo);
+    const [search, setSearch] = useState('');
 
-    useEffect(() => {
-        setBooks(bookInfo);
-    }, [books]);
+    // NEEDS WORK: give credit to the guy for this code
+    const filter = (e) => {
+        const keyword = e.target.value;
+    
+        if (keyword !== '') {
+          const results = books.filter((book) => {
+            return book.author.toLowerCase().includes(keyword.toLowerCase());
+            // Use the toLowerCase() method to make it case-insensitive
+          });
+          setBooks(results);
+        } else {
+          setBooks(bookInfo);
+          // If the text field is empty, show all users
+        }
+    
+        setSearch(keyword);
+    };
 
     return (
-        // <div className="grid grid-rows-1 grid-flow-col gap-4">
         <>
-            {/* <Search onSearchInput={test => console.log(test)} /> */}
+            {/* NEEDS WORK: give credit to the css/tailwind search bar */}
+            <div className="container flex items-center justify-center m-10 px-4 sm:px-6 lg:px-8">
+                <div className="relative"> 
+                    <input 
+                        type="text" 
+                        className="h-14 w-96 pr-8 pl-5 rounded z-0 shadow-lg form-control focus:shadow focus:outline-none" 
+                        value={search}
+                        onChange={filter}
+                        placeholder="Search authors.." 
+                    />
+                    <div className="absolute top-4 right-3"> 
+                        <FontAwesomeIcon icon={faSearch} color="#dc3c31" /> 
+                    </div>
+                </div>
+            </div>
             <Filter onFilterChange={genre => setGenreFilter(genre)} />
             <div className="m-8">
                 <div className="grid place-items-center h-screen">
                     <div className="grid max-w-3xl grid-cols-3 gap-4">
-                        {/* NEEDS WORK: add the ability to deselect a filter and set it back to normal
-                                maybe add an all in the genre list and it defaults to all */}
-                        {genreFilter && genreFilter !== 'all' ? (
-                            bookInfo
+                        {books && genreFilter && genreFilter !== 'all' ? (
+                            books
                         .filter(book => book.genre.includes(genreFilter))
                         .map((book, index) => (
                             <Book 
@@ -44,7 +64,7 @@ function BookGrid() {
                                 genre={book.genre}
                             /> 
                         ))) : (
-                            bookInfo.map((book, index) => (
+                            books.map((book, index) => (
                                 <Book 
                                     key={index} 
                                     title={book.title}

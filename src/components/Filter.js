@@ -30,6 +30,7 @@ const Filter = ({onFilterChange}) => {
 
     return (
         <>
+            {/* NEEDS WORK: give credit to the css/tailwind person for the filter bar */}
             <div className="flex items-center justify-center">
                 <div className="inline-flex shadow-md hover:shadow-lg focus:shadow-lg" role="group">
                     {GENRES.map((genre, index) => (
@@ -44,7 +45,6 @@ const Filter = ({onFilterChange}) => {
                             {genre}
                         </button>
                     ))}
-                    {/*NEEDS WORK: this is kind of a janky way to conditionally set the button rounded corners */}
                 </div>
             </div>
         </>   
