@@ -10,7 +10,7 @@ function Book({
 
     return (
         <div className="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
-            <img className="w-48"
+            <img className=""
                 src={require(`../../assets/${path}`)} 
                 alt={title} />
             <div className="px-6 py-4">

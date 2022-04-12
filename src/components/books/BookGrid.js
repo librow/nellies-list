@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Filter from "../Filter";
+import Search from "../Search";
 
 import Book from "./Book";
 import { bookInfo } from "./bookInfo";
@@ -14,17 +15,23 @@ function BookGrid() {
     //   }, [filter]);
 
     const [genreFilter, setGenreFilter] = useState(null);
+    const [ books, setBooks ] = useState([]);
+
+    useEffect(() => {
+        setBooks(bookInfo);
+    }, [books]);
 
     return (
         // <div className="grid grid-rows-1 grid-flow-col gap-4">
         <>
+            {/* <Search onSearchInput={test => console.log(test)} /> */}
             <Filter onFilterChange={genre => setGenreFilter(genre)} />
-            {console.log(genreFilter)}
             <div className="m-8">
                 <div className="grid place-items-center h-screen">
-                    <div className="grid lg:grid-cols-3 gap-4">
-                        {/* NEEDS WORK: add the ability to deselect a filter and set it back to normal */}
-                        {genreFilter ? (
+                    <div className="grid max-w-3xl grid-cols-3 gap-4">
+                        {/* NEEDS WORK: add the ability to deselect a filter and set it back to normal
+                                maybe add an all in the genre list and it defaults to all */}
+                        {genreFilter && genreFilter !== 'all' ? (
                             bookInfo
                         .filter(book => book.genre.includes(genreFilter))
                         .map((book, index) => (

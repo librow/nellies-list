@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { bookInfo } from './books/bookInfo';
+
 const USERS = [
     { id: 1, name: 'Andy', age: 32 },
     { id: 2, name: 'Bob', age: 30 },
@@ -15,7 +17,7 @@ const USERS = [
     { id: 9, name: 'Bolo', age: 23 },
   ];
 
-const Search = () => {
+const Search = ({onSearchInput}) => {
 
     const [name, setName] = useState('');
 
@@ -26,13 +28,13 @@ const Search = () => {
         const keyword = e.target.value;
     
         if (keyword !== '') {
-          const results = USERS.filter((user) => {
-            return user.name.toLowerCase().startsWith(keyword.toLowerCase());
+          const results = bookInfo.filter((book) => {
+            return book.title.toLowerCase().includes(keyword.toLowerCase());
             // Use the toLowerCase() method to make it case-insensitive
           });
           setFoundUsers(results);
         } else {
-          setFoundUsers(USERS);
+          setFoundUsers(bookInfo);
           // If the text field is empty, show all users
         }
     
@@ -64,7 +66,7 @@ const Search = () => {
                 <input
                     type="input"
                     value={name}
-                    onChange={filter}
+                    onChange={() => onSearchInput("lilia")}
                     className="input"
                     placeholder="Filter"
                 />
