@@ -6,8 +6,8 @@ function Book({
     path,
     genre
 }) {
-    // eventually use context for books?
 
+    // Card Styling credit: https://larainfo.com/blogs/create-a-simple-responsive-card-grid-with-tailwind-css-examples
     return (
         <div className="max-w-xs mx-4 mb-2 rounded-lg shadow-lg">
             <img className=""
@@ -17,8 +17,6 @@ function Book({
                 <h4 className="mb-3 text-xl font-semibold tracking-tight text-gray-800">{title}</h4>
                 <p className="leading-normal text-gray-700">by {author}</p>
             </div>
-            
-            {/* <Image name="sabriel.jpg" /> */}
         </div>
     );
 }

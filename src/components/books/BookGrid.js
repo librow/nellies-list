@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Filter from "../Filter";
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +12,7 @@ function BookGrid() {
     const [books, setBooks] = useState(bookInfo);
     const [search, setSearch] = useState('');
 
-    // NEEDS WORK: give credit to the guy for this code
+    // Basic Filter Code credit: https://www.kindacode.com/article/how-to-create-a-filter-search-list-in-react/
     const filter = (e) => {
         const keyword = e.target.value;
     
@@ -30,10 +30,10 @@ function BookGrid() {
         setSearch(keyword);
     };
 
+    // Search Bar Styling credit: https://bbbootstrap.com/snippets/simple-responsive-search-input-group-44815272
     return (
         <>
-            {/* NEEDS WORK: give credit to the css/tailwind search bar */}
-            <div className="container flex items-center justify-center m-10 px-4 sm:px-6 lg:px-8">
+            <div className="container flex items-center justify-center mx-auto my-10 px-4 sm:px-6 lg:px-8">
                 <div className="relative"> 
                     <input 
                         type="text" 
@@ -49,8 +49,8 @@ function BookGrid() {
             </div>
             <Filter onFilterChange={genre => setGenreFilter(genre)} />
             <div className="m-8">
-                <div className="grid place-items-center h-screen">
-                    <div className="grid max-w-3xl grid-cols-3 gap-4">
+                <div className="grid place-items-center">
+                    <div className="grid max-w-3xl grid-cols-3 gap-4 items-start">
                         {books && genreFilter && genreFilter !== 'all' ? (
                             books
                         .filter(book => book.genre.includes(genreFilter))
